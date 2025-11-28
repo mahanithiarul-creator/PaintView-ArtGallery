@@ -73,7 +73,7 @@ Architecture Flow:
 Clone the repository using Git:
 
 ```bash
-git clone https://github.com/your-username/paintview.git
+git clone https://github.com/mahanithiarul-creator/paintview.git
 cd paintview
 ```
 
@@ -166,3 +166,4 @@ Backend Components:
 
 ## Conclusion
 PaintView is a highly extensible, full-stack art gallery system designed to operate like an e-commerce platform. It demonstrates essential concepts such as filtering, sorting, infinite scrolling, backend integration, and UI responsiveness. The system is ideal for learning full-stack development patterns and can be extended into a production-grade art discovery platform with minimal effort.
+
