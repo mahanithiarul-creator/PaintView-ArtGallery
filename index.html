@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PaintView — Art Gallery</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- AUTH MODAL -->
+  <div id="authModal" class="modal hidden">
+    <div class="modal-box">
+      <h2 id="authTitle">Sign In</h2>
+      <input id="authEmail" placeholder="Email" type="email" />
+      <input id="authPassword" placeholder="Password" type="password" />
+      <button id="authSubmit" class="btn-primary">Submit</button>
+      <button id="authClose" class="btn-secondary">Close</button>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <header class="site-top">
+    <div class="topbar">
+      <div class="brand">PaintView</div>
+
+      <div class="search-bar">
+        <input id="globalSearch" placeholder="Search artworks..." />
+        <button id="searchBtn">Search</button>
+      </div>
+
+      <div class="top-actions">
+        <button class="icon-btn" id="signinBtn">👤 <span id="authStatus">Sign In</span></button>
+        <button class="icon-btn" id="favoritesBtn">♡ Favorites <span id="favCount">0</span></button>
+      </div>
+    </div>
+
+    <!-- NAV -->
+    <nav class="main-nav">
+      <ul id="categoryNav">
+        <li class="cat active" data-cat="all">All</li>
+        <li class="cat" data-cat="paintings">Paintings</li>
+        <li class="cat" data-cat="drawings">Drawings</li>
+        <li class="cat" data-cat="sketches">Sketches</li>
+        <li class="cat" data-cat="digital">Digital</li>
+        <li class="cat" data-cat="trending">Trending</li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">Home → <span id="crumbCategory">All</span></div>
+
+  <main class="page-wrap">
+
+    <!-- SIDEBAR FILTERS -->
+    <aside class="sidebar">
+      <section class="sidebar-card filter-card">
+        <h3>Filters</h3>
+
+        <label>Category</label>
+        <select id="filterCategory">
+          <option value="all">All</option>
+          <option value="paintings">Paintings</option>
+          <option value="drawings">Drawings</option>
+          <option value="sketches">Sketches</option>
+          <option value="digital">Digital</option>
+        </select>
+
+        <label>Medium</label>
+        <div class="checkbox-grid">
+          <label><input type="checkbox" value="oil" class="filter-medium" /> Oil</label>
+          <label><input type="checkbox" value="acrylic" class="filter-medium" /> Acrylic</label>
+          <label><input type="checkbox" value="watercolor" class="filter-medium" /> Watercolor</label>
+          <label><input type="checkbox" value="ink" class="filter-medium" /> Ink</label>
+          <label><input type="checkbox" value="digital" class="filter-medium" /> Digital</label>
+        </div>
+
+        <label>Style</label>
+        <select id="filterStyle">
+          <option value="all">All styles</option>
+          <option value="realism">Realism</option>
+          <option value="abstract">Abstract</option>
+          <option value="impressionism">Impressionism</option>
+          <option value="surreal">Surreal</option>
+        </select>
+
+        <label>Date Range</label>
+        <input id="filterDateFrom" type="date" />
+        <input id="filterDateTo" type="date" />
+
+        <label>Sort by</label>
+        <select id="sortSelect">
+          <option value="trending">Trending</option>
+          <option value="popular">Most popular</option>
+          <option value="newest">Newest</option>
+          <option value="oldest">Oldest</option>
+          <option value="alpha">A → Z</option>
+        </select>
+
+        <label>Minimum Views</label>
+        <input id="minViews" type="number" min="0" placeholder="e.g., 100" />
+
+        <label>Minimum Likes</label>
+        <input id="minLikes" type="number" min="0" placeholder="e.g., 50" />
+
+        <div class="sidebar-actions">
+          <button id="applyFilters" class="btn-primary">Apply</button>
+          <button id="clearFilters" class="btn-secondary">Clear</button>
+        </div>
+      </section>
+
+      <section class="sidebar-card">
+        <h3>Sync Sources</h3>
+        <p class="muted small">Use APIs like SerpAPI, RapidAPI Pinterest Scraper, ZenRows or Puppeteer backend.</p>
+        <button id="syncBtn" class="btn-secondary">Sync from Web</button>
+      </section>
+
+    </aside>
+
+    <!-- CONTENT -->
+    <section class="content">
+
+      <!-- infinite scroll grid -->
+      <div id="galleryGrid" class="gallery-grid" aria-live="polite"></div>
+
+      <!-- compare bar -->
+      <div id="compareBar" class="compare-bar hidden">
+        <h3>Compare</h3>
+        <div id="compareSlots"></div>
+        <button id="compareClear" class="btn-secondary small">Clear</button>
+      </div>
+
+    </section>
+
+    <!-- RIGHT PANEL: DETAIL -->
+    <aside class="rightpanel">
+      <div class="detail-card">
+        <figure class="detail-figure">
+          <img id="detailImg" src="" />
+          <figcaption>
+            <h2 id="detailTitle">Select an artwork</h2>
+            <p id="detailArtist"></p>
+            <p id="detailDesc" class="muted"></p>
+
+            <div class="detail-meta">
+              <button id="detailLike">♡ Like <span id="detailLikes">0</span></button>
+              <button id="detailFav">❤ Favorite</button>
+              <button id="detailCompare">⇆ Compare</button>
+              <button id="openLightboxDetail">🔍 View</button>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="detail-card">
+        <h4>Trending</h4>
+        <ol id="miniTrending"></ol>
+
+        <h4>Popular</h4>
+        <ol id="miniPopular"></ol>
+      </div>
+    </aside>
+  </main>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox hidden">
+    <button id="closeLightbox" class="close">✕</button>
+    <img id="lightboxImg" src="" />
+    <div id="lightboxCaption"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <h4>PaintView</h4>
+        <p class="muted small">Discover artworks with advanced filters, infinite scroll, favorites and compare tools.</p>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul><li>About</li><li>Team</li><li>Press</li></ul>
+      </div>
+      <div>
+        <h5>Resources</h5>
+        <ul><li>APIs</li><li>Docs</li><li>Integrations</li></ul>
+      </div>
+      <div>
+        <h5>Legal</h5>
+        <ul><li>Terms</li><li>Privacy</li><li>Cookies</li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <small>© PaintView — Demo Gallery</small>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
