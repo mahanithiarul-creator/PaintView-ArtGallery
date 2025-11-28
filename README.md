@@ -6,7 +6,8 @@ PaintView is a modern, scalable, e-commerce-style online art gallery system desi
 ## Output Images
 Below are example output representations.
 
-![Web Page](<img width="1919" height="977" alt="image" src="https://github.com/user-attachments/assets/07ccb538-e26e-4d06-94f3-356eeba47d3d" />)
+![Web Page](<img width="1919" height="977" alt="image" src="https://github.com/user-attachments/assets/bc76cf01-b243-44a3-bc4f-410271438338" />
+)
 
 ## Overview
 PaintView allows users to browse artworks in an interactive and highly optimized interface. The system implements backend-driven pagination with infinite scroll and uses an Express.js backend for serving artworks. It includes authentication simulation, artwork like and view counters, trending and popular artworks calculation, and an extensible sync system that can trigger web scraping or third-party API calls to populate the gallery with thousands of artworks.
@@ -166,4 +167,5 @@ Backend Components:
 
 ## Conclusion
 PaintView is a highly extensible, full-stack art gallery system designed to operate like an e-commerce platform. It demonstrates essential concepts such as filtering, sorting, infinite scrolling, backend integration, and UI responsiveness. The system is ideal for learning full-stack development patterns and can be extended into a production-grade art discovery platform with minimal effort.
+
 
